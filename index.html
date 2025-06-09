@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claim ₹40 Cashback</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #f8f9fa, #dce3e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    p {
+      font-size: 14px;
+      color: #444;
+      margin: 6px 0;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      padding: 12px;
+      width: 100%;
+      border: none;
+      background: #28a745;
+      color: white;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 Win ₹40 Cashback!</h1>
+    <p>Install the app and play 1 free game to qualify.</p>
+    <p>Enter your UPI ID below:</p>
+    <input type="text" id="upiInput" placeholder="e.g. yourname@upi" />
+    <button onclick="submitUPI()">Claim Now</button>
+  </div>
+  <script>
+    function submitUPI() {
+      const upi = document.getElementById("upiInput").value.trim();
+      if (!upi) {
+        alert("Please enter a valid UPI ID.");
+        return;
+      }
+      fetch("/submit-upi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ upi })
+      })
+      .then(() => {
+        window.location.href = "https://winzo.app.link/V2R8o9K1QSb";
+      })
+      .catch(() => alert("Submission failed. Please try again later."));
+    }
+  </script>
+</body>
+</html>

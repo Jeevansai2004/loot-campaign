@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - UPI Submissions</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2>UPI Submissions</h2>
+  <table>
+    <thead>
+      <tr><th>UPI ID</th><th>Timestamp</th></tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <script>
+    fetch('/admin/data')
+      .then(res => res.json())
+      .then(data => {
+        const tableBody = document.getElementById('tableBody');
+        data.forEach(entry => {
+          const row = `<tr><td>${entry.upi}</td><td>${entry.time}</td></tr>`;
+          tableBody.innerHTML += row;
+        });
+      });
+  </script>
+</body>
+</html>
